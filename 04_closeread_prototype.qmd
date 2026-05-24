@@ -15,7 +15,10 @@ execute:
 
 <div class="eyebrow">SEA LEVEL RISE · TUVALU · PACIFIC DATAVIZ CHALLENGE 2026</div>
 
-For Tuvalu, the difference between 1°C and 1.5°C of warming is not a number — it is the island.
+<div class="standfirst">
+  <p>Funafuti Atoll, home to most of Tuvalu's population, rises only a few meters above the Pacific Ocean.</p>
+  <p>The difference between 1°C and 1.5°C of global warming is often described as incremental. On low-lying atolls, it can become geographic.</p>
+</div>
 
 :::{.cr-section}
 
@@ -25,11 +28,15 @@ For Tuvalu, the difference between 1°C and 1.5°C of warming is not a number �
 
 Funafuti is not a block of land. It is a thin ring of motu around a lagoon — narrow, fragmented, and already close to the ocean. @cr-baseline
 
+Look at the width of the land. In many places, the reef strips are narrower than a city block.
+
 At one meter of sea-level rise, the edges begin to fail first. The most exposed strips are not gone all at once, but their usable margins shrink. @cr-slr10
 
 :::{#cr-slr10}
 ![](output/03_branded/funafuti_branded_10.png)
 :::
+
+The difference between these two scenarios is roughly comparable to the difference between 1°C and 1.5°C of global warming.
 
 By 1.5 meters, the pattern changes from edge loss to fragmentation. The connectors between motu become the weak points. @cr-slr15
 
@@ -41,19 +48,78 @@ By 1.5 meters, the pattern changes from edge loss to fragmentation. The connecto
 
 ---
 
-*Methodology note to be added here.*
+## Methodology
+
+This piece uses elevation data from the Copernicus GLO-30 Digital Elevation Model,
+accessed via the `elevatr` R package. GLO-30 is a 30-meter resolution global DEM
+derived from TanDEM-X radar data. For low-lying atoll environments, radar-derived
+DEMs systematically overestimate land elevation because the radar return includes
+vegetation canopy rather than bare ground. A uniform correction of −1.8m was applied
+to all land pixels to partially compensate for this bias. This correction is an
+approximation: canopy height varies across the atoll and the true correction is not
+spatially uniform.
+
+Flood extents were derived using a bathtub inundation model — any land pixel with
+corrected elevation at or below the sea-level rise threshold is classified as exposed.
+The bathtub model assumes static, connected inundation and does not account for
+wave dynamics, storm surge, groundwater intrusion, or sediment transport. It
+represents a low-elevation exposure threshold, not a flood prediction. Flood
+pixels in the rendered maps are expanded by one grid cell outward for visual
+legibility; the percentage figures in the subtitles reflect the methodologically
+correct threshold without this display expansion.
+
+Three scenarios are shown: 0.0m (current baseline), 1.0m, and 1.5m of sea-level
+rise. The relationship between global mean temperature and sea-level rise is
+nonlinear and scenario-dependent; the 1.0m and 1.5m scenarios are used here as
+illustrative thresholds, not as precise projections for specific warming levels.
+
+Coastline geometry is sourced from OpenStreetMap via the `osmextract` package.
+All analysis was conducted in R using the `terra` and `sf` spatial packages.
+Maps were rendered with `ggplot2` and `tidyterra`. The full pipeline is
+open and reproducible.
+
+Official flood exposure data for Tuvalu from the Pacific Community (SPC) may
+supersede this open pipeline when released. This piece will be updated accordingly.
+
+<div class="eyebrow" style="margin-top: 2rem;">NOT AN OFFICIAL FLOOD FORECAST · OPEN PIPELINE · REPRODUCIBLE IN R</div>
+
+---
+
+<div style="margin-top: 1.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: #6E83AB; line-height: 1.8;">
+  <span style="color: #F2EDE2; font-weight: 500;">Steven Ponce</span>
+  &nbsp;·&nbsp;
+  Data Analyst &amp; R/Shiny Developer
+  &nbsp;·&nbsp;
+  Pacific Dataviz Challenge 2026
+</div>
+
+<div style="margin-top: 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: #6E83AB; letter-spacing: 0.04em;">
+  <a href="https://www.linkedin.com/in/stevenponce/" style="color: #4FE0CC;">LinkedIn</a>
+  &nbsp;·&nbsp;
+  <a href="https://bsky.app/profile/sponce1.bsky.social" style="color: #4FE0CC;">Bluesky</a>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/poncest" style="color: #4FE0CC;">GitHub</a>
+  &nbsp;·&nbsp;
+  <a href="https://stevenponce.netlify.app" style="color: #4FE0CC;">stevenponce.netlify.app</a>
+</div>
 
 ```{=html}
 <script>
 // Manual scroll-based sticky swap.
-// Bypasses Scrollama initialization timing issues.
-// Reads trigger positions on each scroll event and activates
-// the correct sticky based on which trigger is above the
-// 50% viewport mark — matching Closeread's offset: 0.5 logic.
+// Required workaround for Closeread v1.0.1 + Scrollama initialization
+// timing issue. Scrollama fires before layout is complete and misses
+// triggers already in the viewport on load. This script replaces
+// Scrollama's stepEnter logic with a direct scroll listener that
+// applies cr-active to the correct sticky on every scroll event.
+//
+// Logic: matches Closeread's offset: 0.5 — a trigger is "active" when
+// its top has crossed the 50% viewport mark. The last such trigger wins.
+//
+// DO NOT REMOVE. DO NOT REPLACE WITH scrollama.resize() calls.
+// Tested: Closeread v1.0.1, Quarto 1.6.x, Windows, Chrome.
 
 window.addEventListener('load', function() {
 
-  // Map each trigger to its target sticky ID
   var triggers = Array.from(document.querySelectorAll('.trigger[data-focus-on]'));
   var stickies = document.querySelectorAll('.sticky');
 
@@ -62,7 +128,6 @@ window.addEventListener('load', function() {
     var active = null;
     triggers.forEach(function(t) {
       var rect = t.getBoundingClientRect();
-      // Trigger is active if its top has crossed the midpoint
       if (rect.top <= midpoint) {
         active = t.getAttribute('data-focus-on');
       }
@@ -81,10 +146,7 @@ window.addEventListener('load', function() {
     });
   }
 
-  // Run on scroll
   window.addEventListener('scroll', updateStickies);
-
-  // Run once on load to activate first visible trigger
   setTimeout(updateStickies, 200);
 });
 </script>

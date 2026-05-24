@@ -104,3 +104,29 @@ p { max-width: 62ch; }
 a { color: #4FE0CC; text-decoration: none; }
 a:hover { color: #7CF0E0; }
 ::selection { background: #4FE0CC; color: #07142F; }
+
+/* ── Standfirst ───────────────────────────────── */
+/* Pre-scroll editorial introduction. Narrow       */
+/* column, generous spacing, quiet weight.         */
+/* Sits between title/eyebrow and cr-section.      */
+.standfirst {
+  max-width: 48ch;
+  margin: 3rem 0 4rem 0;
+}
+
+.standfirst p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: #F2EDE2;
+  margin-bottom: 1.25rem;
+  max-width: 48ch;
+}
+
+/* Second paragraph — threshold sentence */
+/* Mist + italic = quieter register,     */
+/* signals shift from fact to implication */
+.standfirst p:last-child {
+  color: #6E83AB;
+  font-style: italic;
+}
