@@ -1,0 +1,125 @@
+---
+title: "Pacific Currents — Prototype"
+format:
+  closeread-html:
+    self-contained: true
+    theme: none
+    css: styles.css
+execute:
+  warning: false
+  message: false
+  echo: false
+---
+
+```{r}
+#| label: setup
+
+library(tidyverse)
+library(showtext)
+library(sysfonts)
+
+font_add(
+  family  = "big_shoulders",
+  regular = here::here("fonts/BigShoulders-VariableFont_opsz,wght.ttf")
+)
+font_add(
+  family  = "dm_sans",
+  regular = here::here("fonts/DMSans-VariableFont_opsz,wght.ttf"),
+  italic  = here::here("fonts/DMSans-Italic-VariableFont_opsz,wght.ttf")
+)
+font_add(
+  family  = "jetbrains_mono",
+  regular = here::here("fonts/JetBrainsMono-VariableFont_wght.ttf"),
+  italic  = here::here("fonts/JetBrainsMono-Italic-VariableFont_wght.ttf")
+)
+showtext_auto()
+showtext_opts(dpi = 320)
+
+pal <- list(
+  abyss = "#07142F",
+  tide  = "#102447",
+  reef  = "#4FE0CC",
+  coral = "#FF7A59",
+  sun   = "#FFC857",
+  sand  = "#F2EDE2",
+  mist  = "#6E83AB"
+)
+
+theme_pacific <- function() {
+  theme_minimal(base_family = "dm_sans") +
+    theme(
+      plot.background  = element_rect(fill = pal$abyss, color = NA),
+      panel.background = element_rect(fill = pal$abyss, color = NA),
+      panel.grid.major = element_line(color = "#2A4A87", linewidth = 0.25),
+      panel.grid.minor = element_blank(),
+      plot.title = element_text(
+        family = "big_shoulders", face = "bold",
+        size = 42, color = "white", margin = margin(b = 8)
+      ),
+      plot.subtitle = element_text(
+        family = "dm_sans", size = 13,
+        color = pal$sand, margin = margin(b = 24)
+      ),
+      axis.title  = element_blank(),
+      axis.text   = element_text(color = pal$mist, size = 10),
+      plot.caption = element_text(
+        family = "jetbrains_mono", color = pal$mist,
+        size = 8.5, hjust = 0
+      ),
+      plot.margin = margin(24, 32, 24, 32)
+    )
+}
+
+set.seed(2026)
+temp_df <- tibble(
+  year    = 2000:2026,
+  anomaly = cumsum(rnorm(27, mean = 0.035, sd = 0.055))
+)
+```
+
+```{r}
+#| label: save-chart
+#| include: false
+
+p <- ggplot(temp_df, aes(year, anomaly)) +
+  geom_hline(yintercept = 0, color = pal$mist, linewidth = 0.35) +
+  geom_line(color = pal$reef, linewidth = 1.4) +
+  geom_point(color = pal$reef, size = 2.2) +
+  annotate(
+    "text",
+    x = 2022, y = max(temp_df$anomaly) * 0.9,
+    label  = "warming signal",
+    family = "jetbrains_mono",
+    color  = pal$coral, size = 3.2, hjust = 0
+  ) +
+  labs(
+    title    = "Warming Currents",
+    subtitle = "Fake temperature anomaly · Pacific Currents visual system",
+    caption  = "Prototype only · simulated data"
+  ) +
+  theme_pacific()
+
+ggsave("chart_temp.png", p, width = 9, height = 5, dpi = 320, bg = pal$abyss)
+```
+
+# Pacific Currents — Prototype
+
+<div class="eyebrow">CLOSEREAD TEST · FAKE DATA · MAY 2026</div>
+
+This page tests whether a ggplot2 chart renders inside a Closeread sticky section using the Pacific Currents visual system.
+
+:::{.cr-section}
+
+When this chart scrolls into view, it stays fixed while the story unfolds. @cr-temp-chart
+
+The Pacific Ocean has been warming for decades. Each year adds a fraction of a degree — invisible in isolation, unmistakable over time. @cr-temp-chart
+
+The trend accelerates sharply after 2015, as ocean heat accumulates faster than at any point in the instrumental record. @cr-temp-chart
+
+Later, this same structure can reveal annotations, swap charts, or transition to a map. @cr-temp-chart
+
+:::{#cr-temp-chart}
+![](chart_temp.png)
+:::
+
+:::

@@ -1,0 +1,106 @@
+/* ────────────────────────────────────────────────
+   PACIFIC CURRENTS · PROTOTYPE CSS
+   ──────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  background: #07142F;
+  color: #F2EDE2;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0 2rem;
+}
+
+.quarto-title-block,
+.quarto-title-banner,
+.quarto-title,
+#quarto-header,
+#title-block-header { display: none !important; }
+
+h1, h2, h3 {
+  color: #F2EDE2;
+  font-family: 'Big Shoulders Display', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 0.95;
+}
+
+p { max-width: 62ch; }
+
+.cr-section {
+  background: #07142F !important;
+  padding: 0;
+  margin: 0;
+}
+
+.cr-narrative-col,
+.narrative-col {
+  background: #07142F !important;
+  color: #F2EDE2;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+  padding: 0 2rem;
+}
+
+.cr-narrative-col p,
+.narrative-col p { color: #F2EDE2; }
+
+/* ── Sticky column: visible, but NOT individual stickies ── */
+/* Let Closeread's JS manage .sticky opacity.               */
+/* The column and stack must be visible for the JS to work. */
+.cr-sticky-col,
+.sticky-col,
+.sticky-col-stack {
+  background:  #07142F !important;
+  opacity:     1 !important;
+  visibility:  visible !important;
+}
+
+/* ── Individual stickies: DO NOT override opacity ─────── */
+/* Closeread sets .sticky opacity via JS as you scroll.    */
+/* Overriding here breaks the swap. Leave unset.           */
+
+/* ── Sticky image sizing ──────────────────────── */
+.cr-sticky-col img,
+.cr-sticky img {
+  width:      100%;
+  max-width:  100%;
+  max-height: 90vh;
+  height:     auto;
+  object-fit: contain;
+}
+
+/* ── Trigger cards ────────────────────────────── */
+.cr-trigger,
+.trigger {
+  background: rgba(16, 36, 71, 0.72);
+  border-left: 3px solid #4FE0CC;
+  padding: 1rem 1.2rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.cr-trigger.active,
+.trigger.active {
+  border-left-color: #7CF0E0;
+  box-shadow: 0 0 0 1px rgba(79, 224, 204, 0.12);
+  color: #4FE0CC;
+}
+
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #4FE0CC;
+}
+
+a { color: #4FE0CC; text-decoration: none; }
+a:hover { color: #7CF0E0; }
+::selection { background: #4FE0CC; color: #07142F; }

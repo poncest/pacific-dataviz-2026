@@ -1,0 +1,23 @@
+
+
+# R
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.positai
+
+# Large local files — not needed for reproducibility
+fonts/
+data/osm_cache/
+
+# Build artifacts
+_webpages/
+04_closeread_prototype.html
+
+# Branded PNGs — large outputs, re-generate from 03_
+output/03_branded/
+
+# Internal project docs — not part of public repo
+prototype/
+documents/
