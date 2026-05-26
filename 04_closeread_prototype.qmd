@@ -32,7 +32,7 @@ Funafuti is not a block of land. It is a thin ring of motu around a lagoon — n
 
 Look at the width of the land. In many places, the reef strips are narrower than a city block.
 
-At one meter of sea-level rise, the edges begin to fail first. The most exposed strips are not gone all at once, but their usable margins shrink. @cr-slr10
+At one meter of sea-level rise, the edges begin to fail first. The exposed land is still measured in single digits — but the pattern has changed. @cr-slr10
 
 :::{#cr-slr10}
 ![](output/03_branded/funafuti_branded_10.png)
@@ -40,13 +40,27 @@ At one meter of sea-level rise, the edges begin to fail first. The most exposed 
 
 The difference between these two scenarios is roughly comparable to the difference between 1°C and 1.5°C of global warming.
 
-By 1.5 meters, the pattern changes from edge loss to fragmentation. The connectors between motu become the weak points. @cr-slr15
+By 1.5 meters, the story is no longer just edge loss. The connecting strips between motu begin to fragment — and exposure nearly doubles. @cr-slr15
 
 :::{#cr-slr15}
 ![](output/03_branded/funafuti_branded_15.png)
 :::
 
 :::
+
+---
+
+<div class="methodology">
+
+## The Numbers Behind the Maps
+
+The bathtub model that generated the maps above also yields a direct exposure
+estimate. The jump from 1.0m to 1.5m — the gap between a 1°C and a 1.5°C
+warming trajectory — nearly doubles the share of Funafuti land at flood risk.
+
+![](output/05_supporting/funafuti_exposure_bar.png)
+
+</div>
 
 ---
 
