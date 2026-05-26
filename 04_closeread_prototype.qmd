@@ -15,7 +15,6 @@ execute:
 # Funafuti Atoll
 
 <div class="eyebrow">SEA LEVEL RISE · TUVALU · PACIFIC DATAVIZ CHALLENGE 2026</div>
-<div class="eyebrow" style="color: #6E83AB; margin-top: 0.35rem;">OPEN DATA PIPELINE · OFFICIAL SPC DATA MAY SUPERSEDE</div>
 
 <div class="standfirst">
   <p>Funafuti Atoll, home to most of Tuvalu's population, rises only a few meters above the Pacific Ocean.</p>
@@ -95,9 +94,6 @@ Coastline geometry is sourced from OpenStreetMap via the `osmextract` package.
 All analysis was conducted in R using the `terra` and `sf` spatial packages.
 Maps were rendered with `ggplot2` and `tidyterra`. The full pipeline is
 open and reproducible.
-
-Official flood exposure data for Tuvalu from the Pacific Community (SPC) may
-supersede this open pipeline when released. This piece will be updated accordingly.
 
 </div>
 
