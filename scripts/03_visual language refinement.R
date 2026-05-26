@@ -55,6 +55,7 @@ library(ggplot2)
 library(tidyterra)
 library(dplyr)
 library(showtext)
+library(ggtext)
 
 dir.create("output/03_branded", recursive = TRUE, showWarnings = FALSE)
 
@@ -88,6 +89,18 @@ if (!exists("bbox_vals")) {
 slr_scenarios   <- c(0.0, 1.0, 1.5)
 scenario_names  <- c("00", "10", "15")
 scenario_labels <- c("0.0m", "1.0m", "1.5m")
+
+# Render bbox: expand DEM extent by padding so the atoll appears
+# zoomed out within the canvas. This prevents the bottom of the
+# southern chain from being cropped in the browser sticky column.
+# Adjust render_pad_lat to taste (larger = more ocean, smaller atoll).
+render_pad_lat  <- 0.08   # degrees latitude padding top and bottom
+render_pad_lon  <- 0.04   # degrees longitude padding left and right
+bbox_render <- bbox_vals
+bbox_render["ymin"] <- bbox_vals["ymin"] - render_pad_lat
+bbox_render["ymax"] <- bbox_vals["ymax"] + render_pad_lat
+bbox_render["xmin"] <- bbox_vals["xmin"] - render_pad_lon
+bbox_render["xmax"] <- bbox_vals["xmax"] + render_pad_lon
 
 cat("  DEM loaded:", nrow(dem_corrected), "x", ncol(dem_corrected), "pixels\n")
 cat("  Bias correction applied:", BIAS_CORRECTION, "m\n")
@@ -282,19 +295,19 @@ theme_pacific_map <- function() {
         size = 28, color = "white",
         margin = margin(t = 16, b = 4, l = 16)
       ),
-      plot.subtitle = element_text(
+      plot.subtitle = element_markdown(
         family = mono_font,
         size = 11, color = pal$reef,
         margin = margin(b = 8, l = 16)
       ),
       plot.caption = element_text(
         family = mono_font,
-        size = 7, color = pal$mist,
+        size = 6, color = pal$mist,
         hjust = 0,
-        margin = margin(t = 8, b = 12, l = 16, r = 16)
+        margin = margin(t = 8, b = 12, l = 16, r = 32)
       ),
       legend.position = "none",
-      plot.margin     = margin(8, 8, 8, 8)
+      plot.margin     = margin(8, 16, 8, 8)
     )
 }
 
@@ -366,20 +379,33 @@ render_branded <- function(slr, name, label, dem_clean, coast_sf, bbox,
                          labels = c("Ocean", "Dry land", "Flooded")))
   
   # --- Subtitle and caption --------------------------------------------------
-  subtitle_text <- paste0(
-    "SLR +", label, "  |  ",
-    if (pct == 0) "Baseline — no additional inundation"
-    else paste0(pct, "% of land area at flood exposure threshold")
-  )
+  # Subtitle: two lines to prevent right-edge clipping.
+  # Line 1: scenario label
+  # Line 2: finding with percentage highlighted in coral via ggtext markdown
+  # \n ignored by element_markdown — use <br> for line breaks
+  subtitle_text <- if (pct == 0) {
+    paste0("SLR +", label, "<br>Baseline \u2014 no additional inundation")
+  } else {
+    paste0(
+      "SLR +", label, "<br>",
+      if (slr <= 1.0) "The margins are failing \u2014 "
+      else            "Fragmentation begins \u2014 ",
+      '<span style="color:#FF7A59">', pct, '% of land now exposed</span>'
+    )
+  }
   
+  # Caption split across two lines to prevent right-edge clipping.
+  # Line 1: data source + model type
+  # Line 2: disclaimer (+ dilation note on flooded panels)
   caption_base <- paste0(
-    "GLO-30 DEM + ", BIAS_CORRECTION, "m canopy bias correction  |  ",
-    "Bathtub threshold model  |  Not an official flood forecast"
+    "GLO-30 DEM + ", BIAS_CORRECTION, "m canopy bias correction  |  Bathtub threshold model\n",
+    "Not an official flood forecast"
   )
-  # Note the visual dilation on non-baseline panels
   caption_text <- if (slr > 0) {
-    paste0(caption_base,
-           "  |  Flood extent dilated 1 cell for visual legibility")
+    paste0(
+      "GLO-30 DEM + ", BIAS_CORRECTION, "m canopy bias correction  |  Bathtub threshold model\n",
+      "Not an official flood forecast  |  Flood extent dilated 1 cell for visual legibility"
+    )
   } else {
     caption_base
   }
@@ -441,13 +467,13 @@ for (i in seq_along(slr_scenarios)) {
     label            = label,
     dem_clean        = dem_clean,
     coast_sf         = coast_sf,
-    bbox             = bbox_vals,
+    bbox             = bbox_render,
     min_flood_pixels = min_flood_patch_pixels
   )
   
   outfile <- file.path("output/03_branded",
                        paste0("funafuti_branded_", name, ".png"))
-  ggsave(outfile, p, width = 7, height = 9, dpi = 320, bg = pal$abyss)
+  ggsave(outfile, p, width = 7, height = 7, dpi = 320, bg = pal$abyss)
   cat("  Saved:", outfile, "\n")
 }
 

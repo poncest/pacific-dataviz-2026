@@ -51,9 +51,7 @@ p { max-width: 62ch; }
 .cr-narrative-col p,
 .narrative-col p { color: #F2EDE2; }
 
-/* ── Sticky column: visible, but NOT individual stickies ── */
-/* Let Closeread's JS manage .sticky opacity.               */
-/* The column and stack must be visible for the JS to work. */
+/* ── Sticky column ────────────────────────────── */
 .cr-sticky-col,
 .sticky-col,
 .sticky-col-stack {
@@ -62,27 +60,24 @@ p { max-width: 62ch; }
   visibility:  visible !important;
 }
 
-/* ── Individual stickies: DO NOT override opacity ─────── */
-/* Closeread sets .sticky opacity via JS as you scroll.    */
-/* Overriding here breaks the swap. Leave unset.           */
-
 /* ── Sticky image sizing ──────────────────────── */
 .cr-sticky-col img,
 .cr-sticky img {
-  width:      100%;
-  max-width:  100%;
-  max-height: 90vh;
-  height:     auto;
-  object-fit: contain;
+  width:            100%;
+  max-width:        100%;
+  max-height:       92vh;
+  height:           auto;
+  object-fit:       contain;
+  object-position:  top center;
 }
 
 /* ── Trigger cards ────────────────────────────── */
 .cr-trigger,
 .trigger {
-  background: rgba(16, 36, 71, 0.72);
+  background: rgba(16, 36, 71, 0.92);
   border-left: 3px solid #4FE0CC;
-  padding: 1rem 1.2rem;
-  border-radius: 4px;
+  padding: 1.2rem 1.4rem;
+  border-radius: 6px;
   margin-bottom: 1rem;
 }
 
@@ -90,7 +85,14 @@ p { max-width: 62ch; }
 .trigger.active {
   border-left-color: #7CF0E0;
   box-shadow: 0 0 0 1px rgba(79, 224, 204, 0.12);
-  color: #4FE0CC;
+}
+
+/* ── Trigger paragraph text ───────────────────── */
+.cr-trigger p,
+.trigger p {
+  font-size:   1.15rem;
+  font-weight: 500;
+  line-height: 1.7;
 }
 
 .eyebrow {
@@ -106,9 +108,6 @@ a:hover { color: #7CF0E0; }
 ::selection { background: #4FE0CC; color: #07142F; }
 
 /* ── Standfirst ───────────────────────────────── */
-/* Pre-scroll editorial introduction. Narrow       */
-/* column, generous spacing, quiet weight.         */
-/* Sits between title/eyebrow and cr-section.      */
 .standfirst {
   max-width: 48ch;
   margin: 3rem 0 4rem 0;
@@ -123,10 +122,45 @@ a:hover { color: #7CF0E0; }
   max-width: 48ch;
 }
 
-/* Second paragraph — threshold sentence */
-/* Mist + italic = quieter register,     */
-/* signals shift from fact to implication */
 .standfirst p:last-child {
   color: #6E83AB;
   font-style: italic;
+}
+
+/* ── Methodology section ──────────────────────── */
+.methodology {
+  max-width: 90ch;
+  margin-top: 2rem;
+}
+
+.methodology p {
+  max-width: none;
+  line-height: 1.75;
+  color: #F2EDE2;
+}
+
+/* ── Footer ───────────────────────────────────── */
+.footer-line {
+  display:     flex;
+  flex-wrap:   nowrap;
+  align-items: baseline;
+  gap:         0.5rem;
+  margin-top:  1.5rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size:   0.95rem;
+  color:       #6E83AB;
+  line-height: 1.8;
+}
+
+.footer-links {
+  display:     flex;
+  flex-wrap:   nowrap;
+  align-items: baseline;
+  gap:         0.5rem;
+  margin-top:  0.4rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size:   0.78rem;
+  color:       #6E83AB;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
 }
