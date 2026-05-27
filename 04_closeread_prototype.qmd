@@ -14,11 +14,14 @@ execute:
 
 # Funafuti Atoll
 
-<div class="eyebrow">SEA LEVEL RISE · TUVALU · PACIFIC DATAVIZ CHALLENGE 2026</div>
+<div class="header-row">
+  <div class="eyebrow">SEA LEVEL RISE · TUVALU · PACIFIC DATAVIZ CHALLENGE 2026</div>
+  <img class="challenge-logo" src="img/logo-white-base.png" alt="Pacific Dataviz Challenge 2026">
+</div>
 
 <div class="standfirst">
   <p>Funafuti Atoll, home to most of Tuvalu's population, rises only a few meters above the Pacific Ocean.</p>
-  <p>The difference between 1°C and 1.5°C of global warming is often described as incremental. On low-lying atolls, it can become geographic.</p>
+  <p>The difference between 1°C and 1.5°C of global warming is often described as incremental. On low-lying atolls, it can become geographic. The scenarios below are illustrative thresholds, not precise projections — see the methodology.</p>
 </div>
 
 :::{.cr-section}
@@ -49,7 +52,7 @@ By 1.5 meters, the story is no longer just edge loss. The connecting strips betw
 
 ---
 
-<div class="methodology">
+<div class="methodology numbers-behind">
 
 ## The Numbers Behind the Maps
 
@@ -95,9 +98,32 @@ All analysis was conducted in R using the `terra` and `sf` spatial packages.
 Maps were rendered with `ggplot2` and `tidyterra`. The full pipeline is
 open and reproducible.
 
+<div class="data-sources">
+  <div class="eyebrow">DATA SOURCES</div>
+  <ul>
+    <li>Copernicus GLO-30 Digital Elevation Model (ESA / DLR), accessed via the <code>elevatr</code> R package. Public domain.</li>
+    <li>OpenStreetMap coastline geometry, via <code>osmextract</code> / Geofabrik. © OpenStreetMap contributors, ODbL 1.0.</li>
+    <li>Derived flood-exposure scenarios at 0.0m, 1.0m, and 1.5m sea-level rise, produced by the author using the bathtub inundation model described above.</li>
+    <li>Atoll canopy-height correction informed by Yamano et al. (2007) and Tuck et al. (2019).</li>
+    <!-- SPC dataset line — uncomment and populate once the official June 1 2026 list is published
+    <li>Pacific Community (SPC) Pacific Data Hub: [dataset name and URL].</li>
+    -->
+  </ul>
+</div>
+
+<div class="tools-block">
+  <div class="eyebrow">TOOLS</div>
+  <p class="tools-text">R · Quarto · Closeread v1.0.1 · ggplot2 · ggtext · showtext · terra · sf · tidyterra · elevatr · osmextract · patchwork</p>
+</div>
+
 </div>
 
 <div class="eyebrow" style="margin-top: 2rem;">NOT AN OFFICIAL FLOOD FORECAST · OPEN PIPELINE · REPRODUCIBLE IN R</div>
+
+<div class="licence-block">
+  <div class="eyebrow">LICENCE</div>
+  <p class="licence-text">This work — code, narrative, and derived visualisations — is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. You are free to share and adapt with attribution. OpenStreetMap-derived geometry remains under <a href="https://opendatacommons.org/licenses/odbl/">ODbL 1.0</a>; the Copernicus GLO-30 DEM is in the public domain.</p>
+</div>
 
 ---
 

@@ -1,11 +1,17 @@
 /* ────────────────────────────────────────────────
-   PACIFIC CURRENTS · PROTOTYPE CSS
+   PACIFIC CURRENTS · COMPETITION CSS
+   Funafuti — The Tuvalu Threshold
    ──────────────────────────────────────────────── */
 
+/* ── Google Fonts ─────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');
 
-*, *::before, *::after { box-sizing: border-box; }
+/* ── Reset ────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 
+/* ── Page ─────────────────────────────────────── */
 body {
   background: #07142F;
   color: #F2EDE2;
@@ -16,12 +22,16 @@ body {
   padding: 0 2rem;
 }
 
+/* ── Hide Quarto chrome ───────────────────────── */
 .quarto-title-block,
 .quarto-title-banner,
 .quarto-title,
 #quarto-header,
-#title-block-header { display: none !important; }
+#title-block-header {
+  display: none !important;
+}
 
+/* ── Headings ─────────────────────────────────── */
 h1, h2, h3 {
   color: #F2EDE2;
   font-family: 'Big Shoulders Display', sans-serif;
@@ -30,14 +40,28 @@ h1, h2, h3 {
   line-height: 0.95;
 }
 
-p { max-width: 62ch; }
+/* ── Paragraphs ───────────────────────────────── */
+p {
+  max-width: 62ch;
+}
 
+/* ── Charts & figures ─────────────────────────── */
+img,
+figure {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 900px;
+}
+
+/* ── Closeread section ────────────────────────── */
 .cr-section {
   background: #07142F !important;
   padding: 0;
   margin: 0;
 }
 
+/* ── Closeread columns ────────────────────────── */
 .cr-narrative-col,
 .narrative-col {
   background: #07142F !important;
@@ -49,52 +73,47 @@ p { max-width: 62ch; }
 }
 
 .cr-narrative-col p,
-.narrative-col p { color: #F2EDE2; }
+.narrative-col p {
+  color: #F2EDE2;
+}
 
-/* ── Sticky column ────────────────────────────── */
 .cr-sticky-col,
 .sticky-col,
 .sticky-col-stack {
-  background:  #07142F !important;
-  opacity:     1 !important;
-  visibility:  visible !important;
+  background: #07142F !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-/* ── Sticky image sizing ──────────────────────── */
+/* ── Force sticky chart visible ───────────────── */
+.cr-sticky-col figure,
 .cr-sticky-col img,
+.cr-sticky figure,
 .cr-sticky img {
-  width:            100%;
-  max-width:        100%;
-  max-height:       92vh;
-  height:           auto;
-  object-fit:       contain;
-  object-position:  top center;
+  opacity:    1 !important;
+  visibility: visible !important;
+  display:    block !important;
 }
 
 /* ── Trigger cards ────────────────────────────── */
 .cr-trigger,
 .trigger {
-  background: rgba(16, 36, 71, 0.92);
+  background: rgba(16, 36, 71, 0.72);
   border-left: 3px solid #4FE0CC;
-  padding: 1.2rem 1.4rem;
-  border-radius: 6px;
+  padding: 1rem 1.2rem;
+  border-radius: 4px;
   margin-bottom: 1rem;
 }
 
+/* ── Active trigger ───────────────────────────── */
 .cr-trigger.active,
 .trigger.active {
   border-left-color: #7CF0E0;
   box-shadow: 0 0 0 1px rgba(79, 224, 204, 0.12);
+  color: #4FE0CC;
 }
 
-/* ── Trigger paragraph text ───────────────────── */
-.cr-trigger p,
-.trigger p {
-  font-size:   1.15rem;
-  font-weight: 500;
-  line-height: 1.7;
-}
-
+/* ── Eyebrow labels ───────────────────────────── */
 .eyebrow {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
@@ -103,64 +122,153 @@ p { max-width: 62ch; }
   color: #4FE0CC;
 }
 
-a { color: #4FE0CC; text-decoration: none; }
-a:hover { color: #7CF0E0; }
-::selection { background: #4FE0CC; color: #07142F; }
-
-/* ── Standfirst ───────────────────────────────── */
-.standfirst {
-  max-width: 48ch;
-  margin: 3rem 0 4rem 0;
+/* ── Links ────────────────────────────────────── */
+a {
+  color: #4FE0CC;
+  text-decoration: none;
 }
 
-.standfirst p {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 1.15rem;
-  line-height: 1.75;
-  color: #F2EDE2;
-  margin-bottom: 1.25rem;
-  max-width: 48ch;
+a:hover {
+  color: #7CF0E0;
 }
 
-.standfirst p:last-child {
-  color: #6E83AB;
-  font-style: italic;
+/* ── Selection color ──────────────────────────── */
+::selection {
+  background: #4FE0CC;
+  color: #07142F;
 }
 
-/* ── Methodology section ──────────────────────── */
-.methodology {
+/* ── Closeread sticky show/hide (BUG FIX v0.7.2) ──
+   Previously this rule forced ALL stickies to opacity:1,
+   which caused all three flood maps to render on top of
+   each other. The scroll-swap script toggles `cr-active`
+   on whichever sticky should be visible; this rule honors
+   that toggle.
+
+   The "force visible" overrides on .sticky-col / figures
+   above target the COLUMN (which Closeread otherwise hides
+   when no trigger is active) and the IMG element within
+   the active sticky. The individual .sticky containers
+   themselves must fade in/out based on cr-active state.
+   ────────────────────────────────────────────────────── */
+.sticky {
+  opacity: 0;
+  transition: opacity 0.35s ease-in-out;
+}
+
+.sticky.cr-active {
+  opacity: 1;
+}
+
+/* ────────────────────────────────────────────────
+   COMPETITION ADDITIONS — Pacific Dataviz Challenge
+   ──────────────────────────────────────────────── */
+
+/* ── Header row: eyebrow + challenge logo ─────── */
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.header-row .eyebrow {
+  margin: 0;
+}
+
+.challenge-logo {
+  height: 32px;
+  width: auto;
+  opacity: 0.92;
+  display: block;
+  margin: 0;          /* overrides global img centering */
+  max-width: none;    /* overrides global 900px cap */
+}
+
+/* ── Data sources & tools blocks ──────────────── */
+.data-sources {
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  background: rgba(16, 36, 71, 0.45);
+  border-left: 3px solid #4FE0CC;
+  border-radius: 4px;
   max-width: 90ch;
-  margin-top: 2rem;
 }
 
-.methodology p {
-  max-width: none;
-  line-height: 1.75;
+.data-sources .eyebrow {
+  margin-bottom: 0.4rem;
+}
+
+.data-sources ul {
+  margin: 0.4rem 0 0 0;
+  padding-left: 1.1rem;
   color: #F2EDE2;
+  font-size: 14px;
+  line-height: 1.65;
 }
 
-/* ── Footer ───────────────────────────────────── */
-.footer-line {
-  display:     flex;
-  flex-wrap:   nowrap;
-  align-items: baseline;
-  gap:         0.5rem;
-  margin-top:  1.5rem;
-  font-family: 'DM Sans', sans-serif;
-  font-size:   0.95rem;
-  color:       #6E83AB;
-  line-height: 1.8;
+.data-sources li {
+  margin-bottom: 0.3rem;
 }
 
-.footer-links {
-  display:     flex;
-  flex-wrap:   nowrap;
-  align-items: baseline;
-  gap:         0.5rem;
-  margin-top:  0.4rem;
+.data-sources code {
   font-family: 'JetBrains Mono', monospace;
-  font-size:   0.78rem;
-  color:       #6E83AB;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
+  font-size: 12.5px;
+  color: #4FE0CC;
+  background: rgba(7, 20, 47, 0.6);
+  padding: 0 4px;
+  border-radius: 2px;
+}
+
+.tools-text {
+  margin: 0.4rem 0 0 0;
+  color: #F2EDE2;
+  font-size: 14px;
+  line-height: 1.65;
+  max-width: 90ch;
+}
+
+/* ── Licence block ────────────────────────────── */
+.licence-block {
+  max-width: 90ch;
+  margin: 2.5rem auto 1.5rem auto;
+  padding: 1.25rem 0 0 0;
+  border-top: 1px solid rgba(110, 131, 171, 0.25);
+}
+
+.licence-block .eyebrow {
+  margin-bottom: 0.6rem;
+}
+
+.licence-text {
+  color: #6E83AB;
+  font-size: 13px;
+  line-height: 1.55;
+  max-width: 90ch;
+  margin: 0;
+}
+
+.licence-text a {
+  color: #4FE0CC;
+  border-bottom: 1px dotted rgba(79, 224, 204, 0.4);
+}
+/* ── Numbers Behind the Maps: centered layout (v0.7.2) ──
+   Matches the visual weight of the bar chart below.
+   `.methodology` paragraphs default to left-aligned for
+   readability; this wrapper centers the Numbers section
+   specifically without affecting the Methodology prose.
+   ────────────────────────────────────────────────────── */
+.numbers-behind {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.numbers-behind p {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
