@@ -15,13 +15,13 @@ execute:
 # Funafuti Atoll
 
 <div class="header-row">
-  <div class="eyebrow">SEA LEVEL RISE · TUVALU · PACIFIC DATAVIZ CHALLENGE 2026</div>
+  <div class="eyebrow">SEA LEVEL RISE (SLR) · TUVALU · PACIFIC DATAVIZ CHALLENGE 2026</div>
   <img class="challenge-logo" src="img/logo-white-base.png" alt="Pacific Dataviz Challenge 2026">
 </div>
 
 <div class="standfirst">
-  <p>Funafuti Atoll, home to most of Tuvalu's population, rises only a few meters above the Pacific Ocean.</p>
-  <p>The difference between 1°C and 1.5°C of global warming is often described as incremental. On low-lying atolls, it can become geographic. The scenarios below are illustrative thresholds, not precise projections — see the methodology.</p>
+  <p>For Tuvalu, the difference between 1°C and 1.5°C of warming is not a number — it's the island.</p>
+  <p>Funafuti Atoll, home to most of Tuvalu's population, rises only a few meters above the Pacific Ocean. Half a degree of warming sounds incremental; on a low-lying atoll it can become geographic. The scenarios below are illustrative thresholds, not precise projections — see the methodology.</p>
 </div>
 
 :::{.cr-section}
@@ -60,7 +60,7 @@ The bathtub model that generated the maps above also yields a direct exposure
 estimate. The jump from 1.0m to 1.5m — the gap between a 1°C and a 1.5°C
 warming trajectory — nearly doubles the share of Funafuti land at flood risk.
 
-![](output/05_supporting/funafuti_exposure_bar.png)
+![](output/05_supporting/funafuti_exposure_slope.png)
 
 </div>
 
