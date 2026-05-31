@@ -106,7 +106,7 @@ quarto render 04_funafuti_tuvalu_threshold.qmd
 
 ---
 
-## Visual system
+## Visual system 
 
 **Pacific Currents** — a dark visual language built for this piece.
 
