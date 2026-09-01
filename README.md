@@ -10,8 +10,8 @@
 
 > *"For Tuvalu, the difference between 1°C and 1.5°C of warming is not a number — it's the island."*
 
-**Status:** Content complete — editorial, official SPC datasets, accessibility, and methodology passes done · Pending deploy + submission form
-**Live URL:** Coming soon (pre-submission)
+**Status:** Submitted to the Pacific Dataviz Challenge 2026 — International Global Mention category
+**Live URL:** [what-sits-in-the-difference.netlify.app](https://what-sits-in-the-difference.netlify.app)
 **Repo:** [github.com/poncest/pacific-dataviz-2026](https://github.com/poncest/pacific-dataviz-2026)
 
 > **Not an official flood forecast.** This piece is a reproducible exposure-threshold analysis for the Pacific Dataviz Challenge. It is not a flood prediction, and it is not affiliated with the Pacific Community (SPC) or any government agency.
@@ -50,7 +50,7 @@ The scenarios are illustrative thresholds, not precise projections for specific 
 
 ## Data sources
 
-- **Sea-surface temperature (official SPC):** [Sea Surface Temperature anomalies (`ST_ANOM`, °C), Tuvalu, 1850–2025](https://stats.pacificdata.org/vis?lc=en&df%5Bds%5D=SPC2&df%5Bid%5D=DF_CLIMATE_CHANGE&df%5Bag%5D=SPC&df%5Bvs%5D=1.0&av=true&dq=A.ST_ANOM.&pd=,&to%5BTIME_PERIOD%5D=false) — Pacific Community (SPC) Pacific Data Hub `.Stat`, Climate Change Indicators
+- **Sea-surface temperature (official SPC):** [Sea Surface Temperature anomalies (`SST_ANOM`, °C), Tuvalu, 1850–2025](https://stats.pacificdata.org/vis?lc=en&df%5Bds%5D=SPC2&df%5Bid%5D=DF_CLIMATE_CHANGE&df%5Bag%5D=SPC&df%5Bvs%5D=1.0&av=true&dq=A.SST_ANOM.&pd=,&to%5BTIME_PERIOD%5D=false) — Pacific Community (SPC) Pacific Data Hub `.Stat`, Climate Change Indicators
 - **Sea level (official SPC):** [Sea Level Anomalies (`SEA_LVL`, m), Tuvalu, 1993–2023](https://stats.pacificdata.org/vis?lc=en&df%5Bds%5D=SPC2&df%5Bid%5D=DF_CLIMATE_CHANGE&df%5Bag%5D=SPC&df%5Bvs%5D=1.0&av=true&dq=A.SEA_LVL.&pd=,&to%5BTIME_PERIOD%5D=false) — Pacific Community (SPC) Pacific Data Hub `.Stat`, Climate Change Indicators
 - **Elevation:** AWS Open Data Terrain Tiles — a composite global elevation model from open sources (~30 m), accessed via the `elevatr` R package
 - **Coastline:** OpenStreetMap contributors, accessed via Geofabrik regional extracts through `osmextract`. Released under the Open Database License (ODbL)
