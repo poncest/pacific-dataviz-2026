@@ -1,0 +1,4 @@
+- source: 04_funafuti_tuvalu_threshold.qmd
+  netlify:
+    - id: 5b42b7eb-c007-45c4-8275-6689da3326d8
+      url: https://astonishing-figolla-18e274.netlify.app
