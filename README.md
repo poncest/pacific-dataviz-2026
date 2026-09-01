@@ -11,7 +11,9 @@
 > *"For Tuvalu, the difference between 1°C and 1.5°C of warming is not a number — it's the island."*
 
 **Status:** Submitted to the Pacific Dataviz Challenge 2026 — International Global Mention category
+
 **Live URL:** [what-sits-in-the-difference.netlify.app](https://what-sits-in-the-difference.netlify.app)
+
 **Repo:** [github.com/poncest/pacific-dataviz-2026](https://github.com/poncest/pacific-dataviz-2026)
 
 > **Not an official flood forecast.** This piece is a reproducible exposure-threshold analysis for the Pacific Dataviz Challenge. It is not a flood prediction, and it is not affiliated with the Pacific Community (SPC) or any government agency.
