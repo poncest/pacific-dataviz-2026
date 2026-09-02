@@ -14,11 +14,14 @@
 
 **Live URL:** [what-sits-in-the-difference.netlify.app](https://what-sits-in-the-difference.netlify.app)
 
+**Case study:** [The build write-up — analysis, editorial decisions, and implementation](https://stevenponce.netlify.app/projects/standalone_visualizations/sa_2026-09-02.html)
+
 **Repo:** [github.com/poncest/pacific-dataviz-2026](https://github.com/poncest/pacific-dataviz-2026)
 
 > **Not an official flood forecast.** This piece is a reproducible exposure-threshold analysis for the Pacific Dataviz Challenge. It is not a flood prediction, and it is not affiliated with the Pacific Community (SPC) or any government agency.
 
 ---
+
 
 ## Preview
 
